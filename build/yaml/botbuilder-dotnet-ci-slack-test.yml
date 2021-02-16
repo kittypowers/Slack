@@ -68,6 +68,10 @@ steps:
    "##vso[task.setvariable variable=DateTimeTag]$DateTimeTag";
   displayName: 'Create DateTimeTag for Resource Group'
   # Get-Date on Azure DevOps returns a datetime relative to UTC-0, so "Z" is being used instead of the dynamic "K".
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: 
+    checkLatest: true
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
