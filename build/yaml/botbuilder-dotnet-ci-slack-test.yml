@@ -70,8 +70,7 @@ steps:
   # Get-Date on Azure DevOps returns a datetime relative to UTC-0, so "Z" is being used instead of the dynamic "K".
 - task: NuGetToolInstaller@1
   inputs:
-    versionSpec: 
-    checkLatest: true
+    versionSpec: '4.x'
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
