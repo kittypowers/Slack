@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Configuration;
-using System.Linq;
 using System.Runtime.Loader;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Http;
@@ -230,6 +228,14 @@ namespace Microsoft.Bot.Builder.Integration.Runtime.Extensions
             if (featureSettings.ShowTyping)
             {
                 services.AddSingleton<ShowTypingMiddleware>();
+            }
+
+            if (featureSettings.Speak != null)
+            {
+                services.AddSingleton<IMiddleware>(sp => new SetSpeakMiddleware(
+                    featureSettings.Speak.VoiceFontName, 
+                    featureSettings.Speak.Lang, 
+                    featureSettings.Speak.FallbackToTextForSpeechIfEmpty));
             }
         }
     }
